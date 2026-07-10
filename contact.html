@@ -72,11 +72,11 @@
     <div class="form-layout" style="margin-top:var(--space-6)">
       <div>
         <div id="form-status" class="form-confirm" role="status" aria-live="polite" hidden></div>
-        <!-- GO LIVE: replace your-form-id below with your real Formspree endpoint
-             (formspree.io -> new form -> set destination inbox -> copy endpoint).
-             That single edit is all that's needed: js/main.js auto-detects a real
-             endpoint and switches from demo mode to sending. Until then it stays a demo. -->
-        <form id="quote-form" action="https://formspree.io/f/your-form-id" method="post" novalidate>
+        <!-- GO LIVE: this form posts to the Formspree endpoint in the action below;
+             js/main.js auto-detects it and sends (a placeholder containing
+             "your-form-id" would keep it in demo mode instead). To reskin for another
+             client, create a new Formspree form and swap the endpoint here. -->
+        <form id="quote-form" action="https://formspree.io/f/xojogkyg" method="post" novalidate>
           <!-- Honeypot: bots fill this hidden field; Formspree then drops the submission. -->
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
           <input type="hidden" name="_subject" value="New estimate request from everwoodconstruction.com">

@@ -109,6 +109,15 @@ const PROMISE_TEXT = "Free on-site estimate, no obligation, written quote within
 
   var memoryStore = []; // in-memory fallback if localStorage is unavailable
 
+  // Live once a real Formspree endpoint replaces the placeholder in the form action.
+  var formEndpoint = form.getAttribute("action") || "";
+  var formIsLive = formEndpoint && formEndpoint.indexOf("your-form-id") === -1;
+  if (formIsLive) {
+    // Drop the "demo mode" note the moment the page loads on a live form.
+    var demoHint = document.getElementById("form-demo-hint");
+    if (demoHint) demoHint.hidden = true;
+  }
+
   function setError(field, msg) {
     var wrap = field.closest(".field");
     if (wrap) wrap.classList.add("has-error");
@@ -177,9 +186,8 @@ const PROMISE_TEXT = "Free on-site estimate, no obligation, written quote within
     };
     var first = escapeHtml(lead.name.split(" ")[0] || lead.name);
 
-    // Live once a real Formspree endpoint replaces the placeholder in the form action.
-    var endpoint = form.getAttribute("action") || "";
-    var live = endpoint && endpoint.indexOf("your-form-id") === -1;
+    var endpoint = formEndpoint;
+    var live = formIsLive;
 
     if (!live) {
       // Demo mode: persist locally. Wrapped so file:// or blocked storage can't break it.
