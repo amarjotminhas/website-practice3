@@ -397,6 +397,7 @@ hr {
 }
 .card-body { padding: var(--space-3); }
 .card h3 { margin-bottom: var(--space-1); }
+.card-body p:last-child { margin-bottom: 0; }
 
 /* Service card — faint content-matched photo behind a light overlay for legibility.
    The photo URL is passed per card via the inline --svc-img custom property. */
