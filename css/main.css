@@ -209,7 +209,7 @@ hr {
 .nav-desktop ul {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   list-style: none;
   margin: 0;
   padding: 0;
