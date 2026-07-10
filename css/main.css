@@ -3,8 +3,8 @@
    Mobile-first. Base styles target small screens; min-width queries enhance up.
    Color discipline:
      bg      #F8F5F0  · text #1E1E1C  (do 90% of the work)
-     sky      #CADFF0 · light-blue surfaces: header, nav, footer, trust bar, CTA block
-     navy    #1F2D50  · headings, links, and the PRIMARY CTA BUTTON STYLE
+     navy    #1F2D50  · headings, links, and the header/nav/footer/bar surfaces
+     sand    #D4A373  · the PRIMARY CTA BUTTON STYLE ONLY — used nowhere else
      taupe   #7A5C3A  · small accents only (rules, tag borders, hover underlines)
    ========================================================================== */
 
@@ -12,12 +12,12 @@
   /* Palette */
   --bg: #F8F5F0;
   --text: #1E1E1C;
-  --navy: #1F2D50;          /* dark blue — headings, links, primary CTA button */
-  --navy-hover: #16203A;
-  --sky: #CADFF0;           /* light blue — header, nav, footer, trust bar, CTA block, mobile bar */
-  --sky-alt: #EDF3FA;       /* pale blue — alt sections and form aside */
-  --on-sky: #1F2D50;        /* text on light-blue surfaces */
-  --on-sky-muted: #3E4C6B;  /* muted text on light-blue surfaces */
+  --navy: #1F2D50;          /* dark blue — headings, links, and header/footer/bar surfaces */
+  --sand: #D4A373;          /* warm accent — the primary CTA button ONLY */
+  --sand-hover: #c8945f;
+  --surface-alt: #F1ECE2;   /* warm off-white — alt sections and form aside */
+  --on-navy: #EFEAE0;       /* light text on navy surfaces */
+  --on-navy-muted: #B9C3B4; /* muted light text on navy surfaces */
   --taupe: #7A5C3A;
   --surface: #ffffff;
   --border: #E3DDD2;
@@ -98,7 +98,7 @@ hr {
 }
 .section { padding-block: var(--section-y); }
 .section--tight { padding-block: clamp(40px, 7vw, 64px); }
-.section--alt { background: var(--sky-alt); }
+.section--alt { background: var(--surface-alt); }
 
 .lede {
   font-size: 1.1rem;
@@ -138,7 +138,7 @@ hr {
 @media (prefers-reduced-motion: reduce) { .skip-link { transition: none; } }
 
 /* ---------- Buttons ---------- */
-/* THE single primary CTA style — navy blue fill, used consistently everywhere a CTA appears. */
+/* THE single primary CTA style — sand fill, used consistently everywhere a CTA appears. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -146,19 +146,19 @@ hr {
   gap: 8px;
   min-height: 44px;
   padding: 12px 22px;
-  background: var(--navy);
-  color: #F8F5F0;
+  background: var(--sand);
+  color: #1E1E1C;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.2;
   text-decoration: none;
-  border: 1px solid var(--navy);
+  border: 1px solid var(--sand);
   border-radius: var(--radius);
   cursor: pointer;
   transition: background-color .15s ease, transform .05s ease;
 }
-.btn:hover { background: var(--navy-hover); border-color: var(--navy-hover); }
+.btn:hover { background: var(--sand-hover); border-color: var(--sand-hover); }
 .btn:active { transform: translateY(1px); }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 
@@ -180,9 +180,9 @@ hr {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--sky);
-  color: var(--on-sky);
-  border-bottom: 1px solid rgba(31,45,80,.12);
+  background: var(--navy);
+  color: var(--on-navy);
+  border-bottom: 1px solid rgba(255,255,255,.10);
 }
 .header-inner {
   display: flex;
@@ -195,7 +195,7 @@ hr {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  color: var(--navy);
+  color: #fff;
   font-family: var(--font-head);
   font-weight: 700;
   font-size: 1.35rem;
@@ -214,7 +214,7 @@ hr {
   padding: 0;
 }
 .nav-desktop a {
-  color: var(--navy);
+  color: var(--on-navy);
   text-decoration: none;
   font-weight: 500;
   font-size: .98rem;
@@ -228,7 +228,7 @@ hr {
   border-bottom-color: var(--taupe);
 }
 .header-phone {
-  color: var(--navy);
+  color: var(--on-navy);
   text-decoration: none;
   font-weight: 600;
   white-space: nowrap;
@@ -245,9 +245,9 @@ hr {
   height: 44px;
   padding: 0;
   background: transparent;
-  border: 1px solid rgba(31,45,80,.3);
+  border: 1px solid rgba(255,255,255,.25);
   border-radius: var(--radius);
-  color: var(--navy);
+  color: #fff;
   cursor: pointer;
 }
 .nav-toggle svg { display: block; }
@@ -257,8 +257,8 @@ hr {
   position: fixed;
   inset: 0 0 0 auto;
   width: min(86vw, 340px);
-  background: var(--sky);
-  color: var(--navy);
+  background: var(--navy);
+  color: #fff;
   transform: translateX(100%);
   visibility: hidden;               /* keep closed-drawer links out of the tab order */
   transition: transform .25s ease, visibility .25s ease;
@@ -280,16 +280,16 @@ hr {
 .drawer nav ul { list-style: none; margin: 0; padding: 0; }
 .drawer nav a {
   display: block;
-  color: var(--navy);
+  color: var(--on-navy);
   text-decoration: none;
   font-size: 1.15rem;
   font-weight: 500;
   padding: 14px 4px;
   min-height: 44px;
-  border-bottom: 1px solid rgba(31,45,80,.12);
+  border-bottom: 1px solid rgba(255,255,255,.10);
 }
 .drawer nav a[aria-current="page"] {
-  color: var(--navy);
+  color: #fff;
   font-weight: 700;
   text-decoration: underline;
   text-decoration-color: var(--taupe);
@@ -298,7 +298,7 @@ hr {
 .drawer-foot { margin-top: auto; padding-top: var(--space-3); }
 .drawer-phone {
   display: block;
-  color: var(--navy);
+  color: #fff;
   font-weight: 600;
   font-size: 1.05rem;
   text-decoration: none;
@@ -351,9 +351,9 @@ hr {
 
 /* ---------- Trust bar ---------- */
 .trust-bar {
-  background: var(--sky);
-  color: var(--on-sky);
-  border-top: 1px solid rgba(31,45,80,.12);
+  background: var(--navy);
+  color: var(--on-navy);
+  border-top: 1px solid rgba(255,255,255,.10);
 }
 .trust-bar .container {
   display: flex;
@@ -569,7 +569,7 @@ hr {
 .form-aside {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--sky-alt);
+  background: var(--surface-alt);
   padding: var(--space-3);
 }
 .form-aside a { font-weight: 600; }
@@ -597,17 +597,17 @@ hr {
 
 /* ---------- CTA block (page end) ---------- */
 .cta-block {
-  background: var(--sky);
-  color: var(--navy);
+  background: var(--navy);
+  color: #fff;
   text-align: center;
 }
-.cta-block h2 { color: var(--navy); }
-.cta-block p { color: var(--on-sky-muted); max-width: 52ch; margin-inline: auto; }
+.cta-block h2 { color: #fff; }
+.cta-block p { color: var(--on-navy-muted); max-width: 52ch; margin-inline: auto; }
 .cta-block .btn { margin-top: var(--space-2); }
 .cta-phone {
   display: block;
   margin-top: var(--space-2);
-  color: var(--navy);
+  color: #F1ECE2;
   font-weight: 600;
   text-decoration: none;
 }
@@ -615,16 +615,16 @@ hr {
 
 /* ---------- Footer ---------- */
 .site-footer {
-  background: var(--sky);
-  color: var(--on-sky-muted);
+  background: var(--navy);
+  color: var(--on-navy-muted);
   padding-block: var(--space-7);
   font-size: .95rem;
 }
-.site-footer a { color: var(--navy); text-decoration: none; }
+.site-footer a { color: var(--on-navy); text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; text-decoration-color: var(--taupe); }
 .footer-grid { display: grid; gap: var(--space-5); }
 .footer h2, .footer h3 { color: #fff; }
-.footer-brand .f-name { font-family: var(--font-head); font-weight: 700; font-size: 1.3rem; color: var(--navy); margin-bottom: var(--space-1); }
+.footer-brand .f-name { font-family: var(--font-head); font-weight: 700; font-size: 1.3rem; color: #fff; margin-bottom: var(--space-1); }
 .footer nav ul { list-style: none; margin: 0; padding: 0; }
 .footer nav li { margin-bottom: 8px; }
 .footer-heading {
@@ -633,16 +633,16 @@ hr {
   font-size: .8rem;
   letter-spacing: .08em;
   text-transform: uppercase;
-  color: var(--on-sky-muted);
+  color: var(--on-navy-muted);
   margin: 0 0 var(--space-2);
 }
 .footer-contact p { margin-bottom: 8px; }
 .footer-bottom {
   margin-top: var(--space-5);
   padding-top: var(--space-3);
-  border-top: 1px solid rgba(31,45,80,.15);
+  border-top: 1px solid rgba(255,255,255,.12);
   font-size: .85rem;
-  color: var(--on-sky-muted);
+  color: var(--on-navy-muted);
 }
 
 /* ---------- Sticky bottom action bar (mobile only) ---------- */
@@ -651,8 +651,8 @@ hr {
   left: 0; right: 0; bottom: 0;
   z-index: 90;
   display: flex;
-  background: var(--sky);
-  border-top: 1px solid rgba(31,45,80,.15);
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,.12);
 }
 .mobile-bar a {
   flex: 1 1 50%;
@@ -665,7 +665,7 @@ hr {
   font-weight: 600;
   font-size: 1rem;
 }
-.mobile-bar .mb-call { color: var(--navy); }
+.mobile-bar .mb-call { color: #fff; }
 /* The quote half IS the primary CTA style (class="btn mb-quote"); it only
    overrides layout here and inherits its sand background from .btn. */
 .mobile-bar .mb-quote { border: 0; border-radius: 0; }
