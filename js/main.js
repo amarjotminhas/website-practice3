@@ -190,45 +190,6 @@ const PROMISE_TEXT = "Free on-site estimate, no obligation, written quote within
     }
   });
 
-  /* -------------------------------------------------------- Cookie consent */
-  /* Shows the banner once on first visit. A choice — or simply ignoring it —
-     is remembered so the banner never reopens. No choice counts as a decline:
-     a default "decline" is written the moment the banner is shown, then
-     upgraded to "accept" only if the visitor clicks Accept. */
-  function initCookieBanner() {
-    var banner = document.getElementById("cookie-banner");
-    if (!banner) return;
-
-    var key = "everwood_cookie_consent";
-    var stored = null;
-    try { stored = localStorage.getItem(key); } catch (err) { stored = null; }
-    if (stored) return; // already accepted or declined — never reopen
-
-    function record(choice) {
-      try { localStorage.setItem(key, choice); } catch (err) { /* storage blocked */ }
-    }
-
-    // Stamp a default decline so an ignored banner still counts as declined.
-    record("decline");
-    banner.classList.add("is-open");
-
-    function dismiss(choice) {
-      record(choice);
-      banner.classList.remove("is-open");
-    }
-
-    var acceptBtn = banner.querySelector('[data-consent="accept"]');
-    var declineBtn = banner.querySelector('[data-consent="decline"]');
-    if (acceptBtn) acceptBtn.addEventListener("click", function () { dismiss("accept"); });
-    if (declineBtn) declineBtn.addEventListener("click", function () { dismiss("decline"); });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && banner.classList.contains("is-open")) dismiss("decline");
-    });
-  }
-
-  initCookieBanner();
-
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
