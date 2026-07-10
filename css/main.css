@@ -4,7 +4,7 @@
    Color discipline:
      bg      #F8F5F0  · text #1E1E1C  (do 90% of the work)
      navy    #1F2D50  · headings, links, and the header/nav/footer/bar surfaces
-     sand    #D4A373  · the PRIMARY CTA BUTTON STYLE ONLY — used nowhere else
+     cta      #F1ECE2 · the primary CTA button — same warm off-white as the "Our Promise" section
      taupe   #7A5C3A  · small accents only (rules, tag borders, hover underlines)
    ========================================================================== */
 
@@ -13,9 +13,8 @@
   --bg: #F8F5F0;
   --text: #1E1E1C;
   --navy: #1F2D50;          /* dark blue — headings, links, and header/footer/bar surfaces */
-  --sand: #D4A373;          /* warm accent — the primary CTA button ONLY */
-  --sand-hover: #c8945f;
-  --surface-alt: #F1ECE2;   /* warm off-white — alt sections and form aside */
+  --surface-alt: #F1ECE2;   /* warm off-white — alt sections, form aside, and the CTA button */
+  --cta-hover: #E6DBC7;     /* slightly darker cream for CTA hover */
   --on-navy: #EFEAE0;       /* light text on navy surfaces */
   --on-navy-muted: #B9C3B4; /* muted light text on navy surfaces */
   --taupe: #7A5C3A;
@@ -138,7 +137,8 @@ hr {
 @media (prefers-reduced-motion: reduce) { .skip-link { transition: none; } }
 
 /* ---------- Buttons ---------- */
-/* THE single primary CTA style — sand fill, used consistently everywhere a CTA appears. */
+/* THE single primary CTA style — warm off-white (same as the "Our Promise" section),
+   with a navy border so it stays defined on light and dark surfaces alike. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -146,19 +146,19 @@ hr {
   gap: 8px;
   min-height: 44px;
   padding: 12px 22px;
-  background: var(--sand);
-  color: #1E1E1C;
+  background: var(--surface-alt);
+  color: var(--navy);
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1rem;
   line-height: 1.2;
   text-decoration: none;
-  border: 1px solid var(--sand);
+  border: 1px solid var(--navy);
   border-radius: var(--radius);
   cursor: pointer;
   transition: background-color .15s ease, transform .05s ease;
 }
-.btn:hover { background: var(--sand-hover); border-color: var(--sand-hover); }
+.btn:hover { background: var(--cta-hover); border-color: var(--navy); }
 .btn:active { transform: translateY(1px); }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 
