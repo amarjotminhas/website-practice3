@@ -37,6 +37,7 @@
   --maxw: 1080px;
   --radius: 6px;
   --shadow: 0 1px 2px rgba(30,30,28,.06), 0 6px 20px rgba(30,30,28,.07);
+  --shadow-hover: 0 3px 8px rgba(30,30,28,.09), 0 14px 30px rgba(30,30,28,.12);
   --header-h: 64px;
 
   --font-head: "Arimo", Arial, Helvetica, sans-serif;
@@ -484,6 +485,25 @@ hr {
   color: var(--navy);
 }
 .testimonial .t-meta { color: var(--muted); font-size: .9rem; }
+
+/* ---------- Interactive hover on content cards (image + text) ---------- */
+.card, .svc, .testimonial {
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.project-media { transition: transform .3s ease; }
+@media (hover: hover) {
+  .card:hover, .svc:hover, .testimonial:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--taupe);
+  }
+  .card:hover .project-media { transform: scale(1.045); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .svc, .testimonial, .project-media { transition: none; }
+  .card:hover, .svc:hover, .testimonial:hover { transform: none; }
+  .card:hover .project-media { transform: none; }
+}
 
 /* ---------- Owner bio ---------- */
 .owner {
