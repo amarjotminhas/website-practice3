@@ -112,11 +112,6 @@ const PROMISE_TEXT = "Free on-site estimate, no obligation, written quote within
   // Live once a real Formspree endpoint replaces the placeholder in the form action.
   var formEndpoint = form.getAttribute("action") || "";
   var formIsLive = formEndpoint && formEndpoint.indexOf("your-form-id") === -1;
-  if (formIsLive) {
-    // Drop the "demo mode" note the moment the page loads on a live form.
-    var demoHint = document.getElementById("form-demo-hint");
-    if (demoHint) demoHint.hidden = true;
-  }
 
   function setError(field, msg) {
     var wrap = field.closest(".field");
@@ -200,10 +195,8 @@ const PROMISE_TEXT = "Free on-site estimate, no obligation, written quote within
         memoryStore.push(lead); // in-memory fallback
       }
       showConfirm(
-        '<span class="demo-flag">Demo mode</span>' +
         "<h3>Thanks, " + first + " — we’ll be in touch.</h3>" +
-        "<p>Here’s our promise: " + PROMISE_TEXT + ".</p>" +
-        "<p>This is a demo confirmation. Your details are saved only in this browser and have not been sent anywhere yet — a form backend must be wired up before this goes live.</p>" +
+        "<p>" + PROMISE_TEXT + ".</p>" +
         contactLine
       );
       return;
@@ -220,8 +213,6 @@ const PROMISE_TEXT = "Free on-site estimate, no obligation, written quote within
       headers: { "Accept": "application/json" }
     }).then(function (res) {
       if (!res.ok) throw new Error("Bad response");
-      var hint = document.getElementById("form-demo-hint");
-      if (hint) hint.hidden = true;
       showConfirm(
         "<h3>Thanks, " + first + " — your request is in.</h3>" +
         "<p>" + PROMISE_TEXT + ". We’ll follow up at the email or phone number you gave us.</p>" +
