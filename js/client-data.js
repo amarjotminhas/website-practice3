@@ -137,8 +137,12 @@ const testimonials = [
   }
 ];
 
-// heroImage: wide background photo for the home hero (finished residential build at dusk)
+// heroImage: wide background photo for the home hero (finished residential build at dusk).
+// Doubles as the poster/fallback shown before the hero video loads and for reduced-motion users.
 const heroImage = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=70&auto=format&fit=crop";
+
+// heroVideo: looping background video for the home hero (aerial drone footage of custom homes being framed).
+const heroVideo = "https://videos.pexels.com/video-files/11841263/11841263-hd_1280_720_60fps.mp4";
 
 // ownerPhoto: portrait standing in for Dan Kowalski on the About page
 const ownerPhoto = "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=600&q=70&auto=format&fit=crop";

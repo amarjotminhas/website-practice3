@@ -70,11 +70,15 @@ Before going live, complete the two wiring steps under **Reskin checklist**
   project cards, testimonials, FAQ answers, and `<title>`/meta tags are all real
   markup, not rendered by JavaScript.
 
-### Photos
-The hero, the six project cards, and the About portrait use live Unsplash URLs
-(stored in `client-data.js`). Each `<img>` and background image has a
-`<!-- REPLACE WITH CLIENT'S ACTUAL PHOTO -->` comment directly above it. Swap in the
-client's real photos before launch.
+### Photos & hero video
+The six project cards, the service/testimonial card backgrounds, and the About
+portrait use live Unsplash URLs; the home hero plays a looping background video
+(`heroVideo`, hosted on Pexels) with `heroImage` as its poster/fallback. All are
+stored in `client-data.js`. Each `<img>`, background image, and the hero `<video>`
+has a `<!-- REPLACE WITH CLIENT'S ACTUAL PHOTO -->` / `<!-- ... VIDEO -->` comment
+directly above it. The hero video is muted, autoplaying, and looping, and it is
+skipped for visitors who prefer reduced motion (they see the poster image). Swap in
+the client's real media before launch.
 
 ### Lead capture (demo mode)
 The contact form is in **demo mode**. On a valid submit it saves the lead to
@@ -88,7 +92,7 @@ sent anywhere yet. Wire up a form backend before launch (see below).
 1. **Edit `js/client-data.js`** — replace every value: `companyName`, `tagline`,
    `foundedYear`, `ownerName`, `credentials`, `phone`, `email`, `address`,
    `website`, `hours`, `promise`, `services`, `testimonials`, `projects`,
-   `heroImage`, `ownerPhoto`.
+   `heroImage`, `heroVideo`, `ownerPhoto`.
 2. **Regenerate the static HTML** to match the new data — update the hero, trust
    bar, services, project cards, testimonials, footer, and each page's
    `<title>`/meta so they read from the new values. Run the sync check below to

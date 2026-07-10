@@ -321,22 +321,37 @@ hr {
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
+  overflow: hidden;
   color: #fff;
   background: #2b2b28;
-  /* REPLACE WITH CLIENT'S ACTUAL PHOTO — hero background set inline via style attr */
+  /* REPLACE WITH CLIENT'S ACTUAL PHOTO — hero background (poster/fallback) set inline via style attr */
   background-size: cover;
   background-position: center;
   min-height: 340px;            /* mobile: keep headline, trust bar & CTA above the fold at 360px */
   display: flex;
   align-items: center;
 }
+/* Looping background video sits behind the overlay and text; the .hero
+   background-image shows first (poster) and remains the fallback. */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20,22,18,.55), rgba(20,22,18,.68));
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(20,22,18,.62), rgba(20,22,18,.74));
 }
-.hero-inner { position: relative; z-index: 1; padding-block: var(--space-5); }
+.hero-inner { position: relative; z-index: 2; padding-block: var(--space-5); }
+/* Respect reduced-motion: skip the video, show the static poster image instead. */
+@media (prefers-reduced-motion: reduce) { .hero-video { display: none; } }
 .hero h1 { color: #fff; max-width: 16ch; }
 .hero p { color: #F1ECE2; font-size: 1.15rem; max-width: 46ch; }
 .hero .btn { margin-top: var(--space-2); }
