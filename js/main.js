@@ -147,6 +147,21 @@ const PROMISE_TEXT = "Free on-site estimate, no obligation, written quote within
     return firstInvalid;
   }
 
+  var contactLine =
+    '<p>Need to reach us now? <a href="tel:+15552148890">(555) 214-8890</a> · ' +
+    '<a href="mailto:hello@everwoodconstruction.com">hello@everwoodconstruction.com</a></p>';
+
+  // Swap the form for a confirmation message (moves focus to it for screen readers).
+  function showConfirm(html) {
+    var region = document.getElementById("form-status");
+    if (!region) return;
+    region.innerHTML = html;
+    region.hidden = false;
+    form.hidden = true;
+    region.setAttribute("tabindex", "-1");
+    region.focus({ preventScroll: false });
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var bad = validate();
@@ -160,34 +175,63 @@ const PROMISE_TEXT = "Free on-site estimate, no obligation, written quote within
       details: (form.querySelector("#details") || {}).value || "",
       savedAt: new Date().toISOString()
     };
+    var first = escapeHtml(lead.name.split(" ")[0] || lead.name);
 
-    // Persist locally (demo mode). Wrapped so file:// or blocked storage can't break it.
-    try {
-      var key = "everwood_demo_leads";
-      var existing = JSON.parse(localStorage.getItem(key) || "[]");
-      existing.push(lead);
-      localStorage.setItem(key, JSON.stringify(existing));
-    } catch (err) {
-      memoryStore.push(lead); // in-memory fallback
+    // Live once a real Formspree endpoint replaces the placeholder in the form action.
+    var endpoint = form.getAttribute("action") || "";
+    var live = endpoint && endpoint.indexOf("your-form-id") === -1;
+
+    if (!live) {
+      // Demo mode: persist locally. Wrapped so file:// or blocked storage can't break it.
+      try {
+        var key = "everwood_demo_leads";
+        var existing = JSON.parse(localStorage.getItem(key) || "[]");
+        existing.push(lead);
+        localStorage.setItem(key, JSON.stringify(existing));
+      } catch (err) {
+        memoryStore.push(lead); // in-memory fallback
+      }
+      showConfirm(
+        '<span class="demo-flag">Demo mode</span>' +
+        "<h3>Thanks, " + first + " — we’ll be in touch.</h3>" +
+        "<p>Here’s our promise: " + PROMISE_TEXT + ".</p>" +
+        "<p>This is a demo confirmation. Your details are saved only in this browser and have not been sent anywhere yet — a form backend must be wired up before this goes live.</p>" +
+        contactLine
+      );
+      return;
     }
 
-    var region = document.getElementById("form-status");
-    var name = lead.name.split(" ")[0] || lead.name;
-    var html =
-      '<span class="demo-flag">Demo mode</span>' +
-      '<h3>Thanks, ' + escapeHtml(name) + " — we’ll be in touch.</h3>" +
-      "<p>Here’s our promise: " + PROMISE_TEXT + ".</p>" +
-      "<p>This is a demo confirmation. Your details are saved only in this browser and have not been sent anywhere yet — a form backend must be wired up before this goes live.</p>" +
-      '<p>Need to reach us now? <a href="tel:+15552148890">(555) 214-8890</a> · ' +
-      '<a href="mailto:hello@everwoodconstruction.com">hello@everwoodconstruction.com</a></p>';
+    // Live mode: send to the form backend (Formspree) and keep the inline confirmation.
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var btnText = submitBtn ? submitBtn.textContent : "";
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending…"; }
 
-    if (region) {
-      region.innerHTML = html;
-      region.hidden = false;
-      form.hidden = true;
-      region.setAttribute("tabindex", "-1");
-      region.focus({ preventScroll: false });
-    }
+    fetch(endpoint, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { "Accept": "application/json" }
+    }).then(function (res) {
+      if (!res.ok) throw new Error("Bad response");
+      var hint = document.getElementById("form-demo-hint");
+      if (hint) hint.hidden = true;
+      showConfirm(
+        "<h3>Thanks, " + first + " — your request is in.</h3>" +
+        "<p>" + PROMISE_TEXT + ". We’ll follow up at the email or phone number you gave us.</p>" +
+        contactLine
+      );
+    }).catch(function () {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = btnText; }
+      var region = document.getElementById("form-status");
+      if (region) {
+        region.innerHTML =
+          "<h3>Sorry — that didn’t go through.</h3>" +
+          "<p>Something blocked the send. Please try again in a moment, or reach us directly:</p>" +
+          contactLine;
+        region.hidden = false;
+        region.setAttribute("tabindex", "-1");
+        region.focus({ preventScroll: false });
+      }
+    });
   });
 
   function escapeHtml(s) {

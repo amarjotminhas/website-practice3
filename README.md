@@ -80,10 +80,21 @@ directly above it. The hero video is muted, autoplaying, and looping, and it is
 skipped for visitors who prefer reduced motion (they see the poster image). Swap in
 the client's real media before launch.
 
-### Lead capture (demo mode)
-The contact form is in **demo mode**. On a valid submit it saves the lead to
-`localStorage` (with an in-memory fallback) and shows a confirmation — nothing is
-sent anywhere yet. Wire up a form backend before launch (see below).
+### Lead capture (Formspree, auto-detected)
+The contact form emails the company on each submission via **Formspree** — no
+server or build step is added. Out of the box the form ships with a placeholder
+endpoint, so it runs in **demo mode** (saves the lead to `localStorage` with an
+in-memory fallback and shows a demo confirmation, sending nothing). The moment a
+real endpoint replaces the placeholder, `js/main.js` detects it and switches to
+live sending automatically — see the wiring step below.
+
+**Go live:** create a form at [formspree.io](https://formspree.io), set its
+destination to the company inbox, confirm Formspree's verification email, then
+paste the endpoint (e.g. `https://formspree.io/f/abcdwxyz`) into the single
+`<form action="…">` in `contact.html`. On submit, JS POSTs the fields to
+Formspree (keeping the site's inline confirmation — no redirect); with JS off,
+the browser posts natively and Formspree shows its own thank-you page. A hidden
+`_gotcha` honeypot filters bot spam and `_subject` sets the notification subject.
 
 ---
 
@@ -107,9 +118,10 @@ sent anywhere yet. Wire up a form backend before launch (see below).
    `<!-- REPLACE WITH CLIENT'S ACTUAL PHOTO -->` workflow.
 6. **Replace the testimonials** with the client's real reviews. The included ones
    are sample content and must not ship to real visitors as-is.
-7. **Wire up the form backend** — in `contact.html`, set the `<form action="…">`
-   attribute to your endpoint (Formspree / Netlify Forms / Web3Forms). Look for the
-   comment: `WIRE UP TO A FORM BACKEND … BEFORE GOING LIVE`.
+7. **Wire up the form backend** — in `contact.html`, replace `your-form-id` in the
+   single `<form action="https://formspree.io/f/your-form-id">` with your real
+   Formspree endpoint. Look for the comment: `GO LIVE`. `js/main.js` auto-detects
+   the real endpoint and switches from demo mode to live sending; no other change.
 8. **Add analytics** — each page has a commented GA4 slot in `<head>`; paste your
    real snippet in.
 9. **Update `sitemap.xml` and `robots.txt`** to the client's real domain (the
