@@ -40,15 +40,16 @@ const services = [
   "Structural repair"
 ];
 
-// Faint background photo shown behind each service card (and reused behind the
-// matching testimonial cards). Images are business data — swap per client.
+// Photo shown on top of each service card (home services grid and the
+// Services page), and reused as a faint background behind the matching
+// testimonial cards. Images are business data — swap per client.
 const serviceImages = {
-  "Kitchen remodels":          "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=600&q=70&auto=format&fit=crop",
-  "Bathroom renovations":      "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600&q=70&auto=format&fit=crop",
-  "Room additions":            "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=600&q=70&auto=format&fit=crop",
-  "Full-home renovations":     "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=70&auto=format&fit=crop",
-  "Decks & outdoor structures":"https://images.unsplash.com/photo-1595877244574-e90ce41ce089?w=600&q=70&auto=format&fit=crop",
-  "Structural repair":         "https://images.unsplash.com/photo-1598228723793-52759bba239c?w=600&q=70&auto=format&fit=crop"
+  "Kitchen remodels":          "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800&q=70&auto=format&fit=crop",
+  "Bathroom renovations":      "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=800&q=70&auto=format&fit=crop",
+  "Room additions":            "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800&q=70&auto=format&fit=crop",
+  "Full-home renovations":     "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=70&auto=format&fit=crop",
+  "Decks & outdoor structures":"https://images.unsplash.com/photo-1595877244574-e90ce41ce089?w=800&q=70&auto=format&fit=crop",
+  "Structural repair":         "https://images.unsplash.com/photo-1598228723793-52759bba239c?w=800&q=70&auto=format&fit=crop"
 };
 
 // projects: array of { neighborhood, projectType, budgetRange, durationWeeks, challenge, image }

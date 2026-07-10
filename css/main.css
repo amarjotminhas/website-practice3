@@ -399,21 +399,7 @@ hr {
 .card h3 { margin-bottom: var(--space-1); }
 .card-body p:last-child { margin-bottom: 0; }
 
-/* Service card — faint content-matched photo behind a light overlay for legibility.
-   The photo URL is passed per card via the inline --svc-img custom property. */
-.svc {
-  background-color: var(--surface);
-  background-image: linear-gradient(rgba(248,245,240,.85), rgba(248,245,240,.85)), var(--svc-img, none);
-  background-size: cover;
-  background-position: center;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-3);
-}
-.svc h3 { margin-bottom: var(--space-1); }
-.svc p:last-child { margin-bottom: 0; }
-
-/* Project case-study card */
+/* Project / service case-study card */
 .project-media {
   aspect-ratio: 3 / 2;
   background: #eee;
@@ -488,12 +474,12 @@ hr {
 .testimonial .t-meta { color: var(--muted); font-size: .9rem; }
 
 /* ---------- Interactive hover on content cards (image + text) ---------- */
-.card, .svc, .testimonial {
+.card, .testimonial {
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .project-media { transition: transform .3s ease; }
 @media (hover: hover) {
-  .card:hover, .svc:hover, .testimonial:hover {
+  .card:hover, .testimonial:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
     border-color: var(--taupe);
@@ -501,8 +487,8 @@ hr {
   .card:hover .project-media { transform: scale(1.045); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .card, .svc, .testimonial, .project-media { transition: none; }
-  .card:hover, .svc:hover, .testimonial:hover { transform: none; }
+  .card, .testimonial, .project-media { transition: none; }
+  .card:hover, .testimonial:hover { transform: none; }
   .card:hover .project-media { transform: none; }
 }
 
