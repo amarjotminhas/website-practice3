@@ -492,6 +492,17 @@ hr {
   .card:hover .project-media { transform: none; }
 }
 
+/* Clickable cards (home page only): the whole card is a link via a stretched
+   pseudo-element on the heading anchor. Anchor-target cards on the Services /
+   Our Work pages get scroll-margin so they clear the sticky header when linked to. */
+.card--clickable { position: relative; }
+.card--clickable .stretch-link { color: inherit; text-decoration: none; }
+.card--clickable .stretch-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.card[id] { scroll-margin-top: calc(var(--header-h) + 24px); }
+@media (hover: hover) {
+  .card--clickable:hover .stretch-link { text-decoration: underline; }
+}
+
 /* ---------- Owner bio ---------- */
 .owner {
   display: grid;
