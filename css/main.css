@@ -464,9 +464,6 @@ hr {
 /* ---------- Testimonials ---------- */
 .testimonial {
   background-color: var(--surface);
-  background-image: linear-gradient(rgba(248,245,240,.88), rgba(248,245,240,.88)), var(--t-img, none);
-  background-size: cover;
-  background-position: center;
   border: 1px solid var(--border);
   border-left: 3px solid var(--taupe);
   border-radius: var(--radius);
@@ -560,7 +557,7 @@ hr {
 .article h2 { scroll-margin-top: calc(var(--header-h) + 16px); }
 .post-index { margin: 0 0 var(--space-5); padding: 0; list-style: none; }
 .post-index li { margin-bottom: var(--space-1); }
-.post-index a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--taupe); text-underline-offset: 3px; }
+.post-index a { color: var(--navy); text-decoration: none; }
 
 /* ---------- Form ---------- */
 .form-layout { display: grid; gap: var(--space-4); }
