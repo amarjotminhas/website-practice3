@@ -429,9 +429,13 @@ hr {
 }
 .project-meta .sep { color: var(--taupe); }
 .project-challenge { color: var(--muted); margin-bottom: 0; }
-.card-more { margin: 0; font-weight: 600; font-size: .9rem; color: var(--navy); }
-@media (hover: hover) {
-  .card--clickable:hover .card-more { text-decoration: underline; }
+.project-brief {
+  color: var(--muted);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ---------- How we work (steps) ---------- */
