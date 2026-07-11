@@ -497,6 +497,27 @@ hr {
   .card:hover .project-media { transform: none; }
 }
 
+/* Subtle text zoom on hover — Our Work / Services cards and testimonial boxes,
+   paired with the card lift and image zoom. Excludes the clickable home cards,
+   whose whole-card link must keep its full hit area. */
+.card:not(.card--clickable) .card-body,
+.testimonial blockquote,
+.testimonial figcaption {
+  transition: transform .2s ease;
+}
+@media (hover: hover) {
+  .card:not(.card--clickable):hover .card-body,
+  .testimonial:hover blockquote,
+  .testimonial:hover figcaption {
+    transform: scale(1.02);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card:not(.card--clickable) .card-body,
+  .testimonial blockquote,
+  .testimonial figcaption { transition: none; transform: none; }
+}
+
 /* Clickable cards (home page only): the whole card is a link via a stretched
    pseudo-element on the heading anchor. Anchor-target cards on the Services /
    Our Work pages get scroll-margin so they clear the sticky header when linked to. */
