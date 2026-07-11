@@ -13,7 +13,7 @@
    PROMISE_TEXT identical to the `promise` field below.
    ============================================================================ */
 
-const companyName  = "Everwood Construction";
+const companyName  = "Shine Pro B.C";
 const tagline       = "Built once. Built right.";
 const foundedYear   = "2004";
 const ownerName     = "Dan Kowalski";
@@ -128,7 +128,7 @@ const testimonials = [
     name: "Carol & Dave R.",
     neighborhood: "Sellwood",
     projectType: "Full-home renovation",
-    quote: "Living through a full renovation is hard no matter who does it. Everwood kept the site clean and the schedule honest. They saved our original fir trim like we asked, which two other bidders told us wasn't worth the effort."
+    quote: "Living through a full renovation is hard no matter who does it. Shine Pro kept the site clean and the schedule honest. They saved our original fir trim like we asked, which two other bidders told us wasn't worth the effort."
   },
   {
     name: "Ben M.",
