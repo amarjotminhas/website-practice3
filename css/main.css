@@ -429,6 +429,10 @@ hr {
 }
 .project-meta .sep { color: var(--taupe); }
 .project-challenge { color: var(--muted); margin-bottom: 0; }
+.card-more { margin: 0; font-weight: 600; font-size: .9rem; color: var(--navy); }
+@media (hover: hover) {
+  .card--clickable:hover .card-more { text-decoration: underline; }
+}
 
 /* ---------- How we work (steps) ---------- */
 .steps { counter-reset: step; display: grid; gap: var(--space-3); }
