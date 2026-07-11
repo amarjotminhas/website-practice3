@@ -157,8 +157,8 @@ const PROMISE_TEXT = "Free on-site estimate, no obligation, written quote within
   }
 
   var contactLine =
-    '<p>Need to reach us now? <a href="tel:+15552148890">(555) 214-8890</a> · ' +
-    '<a href="mailto:hello@everwoodconstruction.com">hello@everwoodconstruction.com</a></p>';
+    '<p>Need to reach us now? <a href="tel:+12365011001">(236) 501-1001</a> · ' +
+    '<a href="mailto:shineprobc@gmail.com">shineprobc@gmail.com</a></p>';
 
   // Swap the form for a confirmation message (moves focus to it for screen readers).
   function showConfirm(html) {

@@ -21,9 +21,10 @@ const ownerName     = "Dan Kowalski";
 // Each item below appears verbatim in the trust bar and footer.
 const credentials   = ["CCB #198442", "Bonded & Insured", "Est. 2004", "5-Year Workmanship Warranty"];
 
-const phone         = "(555) 214-8890";
-const email         = "hello@everwoodconstruction.com";
-const address       = "1420 Granite Way, Portland, OR";
+const phone         = "(236) 501-1001";      // primary
+const phoneSecondary = "(604) 512-5001";     // secondary
+const email         = "shineprobc@gmail.com";
+const address       = "12844 66B Ave, Surrey BC";
 const website       = "https://www.everwoodconstruction.com";
 const hours         = "Mon–Fri 7am–5pm, Sat by appointment";
 
